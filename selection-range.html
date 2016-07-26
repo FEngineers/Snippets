@@ -5,14 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1">
   <title>Title</title>
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-    }
-
     div {
-      border: 1px solid #eee;
+      border: 5px solid #1e89e0;
       height: 300px;
+      padding: 5px;
     }
 
     div:focus {
@@ -23,7 +19,7 @@
 <body>
   <div contenteditable="true">
     用户点击了起点, 再选中一个终点, 然后把内容高亮起来, 怎么做到?
-    要先监听鼠标的点击事件, 根据鼠标的位置来创建一个Range
+    要先监听鼠标的点击事件, 根据鼠标的位置来创建一个Range, 然后把Range加到selection里面
   </div>
 
   <script>
@@ -32,21 +28,24 @@
     var secondOffset;
     div.addEventListener('click', function() {
       var selectionObject = document.getSelection();
-      if (selectionObject.rangeCount) {
-        var range = selectionObject.getRangeAt(0);
+      if (!firstOffset) firstOffset = selectionObject.anchorOffset;
+      else if (firstOffset) {
+        secondOffset = selectionObject.focusOffset;
 
-        if (!firstOffset) firstOffset = selectionObject.anchorOffset;
-        else if (firstOffset) {
-          secondOffset = selectionObject.focusOffset;
-
-          if (firstOffset < secondOffset) {
-            range.setStart(div.childNodes[0], firstOffset);
-            range.setEnd(div.childNodes[0], secondOffset);
-          } else {
-            range.setStart(div.childNodes[0], secondOffset);
-            range.setEnd(div.childNodes[0], firstOffset);
-          }
+        var range = document.createRange();
+        if (firstOffset < secondOffset) {
+          range.setStart(div.childNodes[0], firstOffset);
+          range.setEnd(div.childNodes[0], secondOffset);
+        } else {
+          range.setStart(div.childNodes[0], secondOffset);
+          range.setEnd(div.childNodes[0], firstOffset);
         }
+
+        selectionObject.removeAllRanges();
+        selectionObject.addRange(range);
+
+        firstOffset = null;
+        secondOffset = null;
 
         var frag = range.cloneContents();
         console.log(frag.textContent);
