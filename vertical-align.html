@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <!-- http://www.zhangxinxu.com/wordpress/2010/05/%E6%88%91%E5%AF%B9css-vertical-align%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3%E4%B8%8E%E8%AE%A4%E8%AF%86%EF%BC%88%E4%B8%80%EF%BC%89/ -->
+  <style>
+    span {
+      border: 1px solid #333;
+      /*padding: 10px;*/
+    }
+
+    .demo1 span:first-child {
+      display: inline-block;
+      width: 200px;
+      margin-right: 50px;
+    }
+
+    .demo1 span:last-child {
+      vertical-align: top;
+    }
+
+    .demo2 span:first-child {
+      display: inline-block;
+      width: 200px;
+      margin: 50px 50px 0 0;
+      vertical-align: middle;
+    }
+
+    .demo2 span:last-child {
+      display: inline-block;
+      margin-top: 50px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo1">
+    <span>
+      咦, 垂直居中有这个属性, 为什么还要用一些奇怪的垂直居中的方法呢?
+      Applies to: inline-level and table-cell elements. It also applies to ::first-letter and ::first-line.
+    </span>
+    <span>
+      没有好好看文档呗
+    </span>
+  </div>
+  <div class="demo2">
+    <span>
+      CSS参考手册上说vertical-align:middle是将当前元素放在父元素的中间。
+      上面的例子,如果对右边的span进行vertical-align:middle, 是没有效果的。
+      如果对当前的例子,仅仅对右边的span使用vertical-align:middle, 左边的也没有对齐。
+    </span>
+    <span>
+      好像有点奇怪, 就是要一起用咯
+    </span>
+  </div>
+</body>
+</html>
