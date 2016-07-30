@@ -3,21 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1">
-  <title>Title</title>
+  <title>点击两处选中内容</title>
   <style>
-    div {
-      border: 5px solid #1e89e0;
+    #editable {
+      border: 3px solid #1e89e0;
       height: 300px;
+      overflow: hidden;
       padding: 5px;
     }
 
-    div:focus {
+    #editable:focus {
       outline: none;
     }
   </style>
 </head>
 <body>
-  <div contenteditable="true">
+  <div id="editable" contenteditable="true">
     用户点击了起点, 再选中一个终点, 然后把内容高亮起来, 怎么做到?
     要先监听鼠标的点击事件, 根据鼠标的位置来创建一个Range, 然后把Range加到selection里面
   </div>
