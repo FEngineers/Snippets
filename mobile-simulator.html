@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Mobile Simulator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1">
+  <style>
+    html, body {
+      margin: 0px;
+      padding: 0px;
+      height: 100%;
+    }
+
+    .device-preview {
+      position: relative;
+      margin: 0px auto;
+      background-image: url("./images/phone-case.png");
+      background-size: 365px 792px;
+      width: 365px;
+      height: 792px;
+    }
+
+    .device-preview > div {
+      position: absolute;
+      top: 104px;
+      /* (365-328-8)/2 */
+      left: 14.5px;
+      z-index: 0;
+      width: 328px;
+      height: 576px;
+      border: 4px solid #22272d;
+      background-color: white;
+      opacity: 0;
+      transition: opacity 0.2s ease-in-out;
+    }
+
+    div.screen-bg {
+      opacity: 1 !important;
+    }
+
+  </style>
+</head>
+<body>
+<div style="text-align: center;">
+  <div class="device-preview">
+    <div class="screen-bg">
+      <p>
+        不打开开发者工具，在页面上演示手机效果
+      </p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
