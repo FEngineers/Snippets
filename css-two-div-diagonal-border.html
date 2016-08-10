@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1">
+  <title>css diagonal line</title>
+  <style>
+    .container {
+      width: 500px;
+      font-size: 0;
+    }
+
+    .container > div {
+      display: inline-block;
+      height: 100px;
+      position: relative;
+    }
+
+    .left {
+      width: 350px;
+      background-color: #eee;
+    }
+
+    .left:before {
+      content: '';
+      border-top: 100px solid #eee;
+      border-right: 20px solid transparent;
+      position: absolute;
+      top: 0;
+      right: -20px;
+      width: 0;
+      height: 0;
+      z-index: 10;
+    }
+
+    .left:after {
+      content: '';
+      background-color: #3190e8;
+      transform: skew(-10deg);
+      position: absolute;
+      top: 0;
+      right: -15px;
+      width: 5px;
+      height: 100px;
+      z-index: 10;
+    }
+
+    .right {
+      width: 100px;;
+      background-color: #eee;
+      margin-left: 25px;
+    }
+
+    .right:before {
+      content: '';
+      content: '';
+      border-bottom: 100px solid #eee;
+      border-left: 20px solid transparent;
+      content:'';
+      position: absolute;
+      top: 0;
+      left: -20px;
+      width: 0;
+      height: 0;
+      z-index: 9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+
+    </div>
+    <div class="right">
+
+    </div>
+  </div>
+
+  <script>
+    document.querySelector('.left').addEventListener('click', function() {
+      alert('left');
+    }, false);
+
+    document.querySelector('.right').addEventListener('click', function() {
+      alert('right');
+    }, false);
+  </script>
+</body>
+</html>
